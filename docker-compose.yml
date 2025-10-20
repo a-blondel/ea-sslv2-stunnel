@@ -1,0 +1,36 @@
+services:
+  stunnel-sslv2:
+    build: .
+    container_name: ea-sslv2-stunnel
+    restart: unless-stopped
+    
+    # Network configuration
+    network_mode: bridge
+    ports:
+      # Expose SSL ports (listen ports = redirect_port + 1)
+      - "30981:30981"
+      - "30191:30191"
+      # Add more ports as needed
+    
+    # Environment variables
+    environment:
+      # REQUIRED: List of services with their redirect ports
+      # Format: service1:port1,port2;service2:port3,port4
+      # Multiple ports per service are separated by commas
+      # Multiple services are separated by semicolons
+      # Listen port will be automatically calculated as redirect_port + 1
+      # Same certificate will be used for all ports of a service
+      SSL_SERVICES: "pspnfs06:30980;pspnba06:30190"
+      
+      # REQUIRED: IP address to redirect traffic to
+      REDIRECT_IP: "127.0.0.1"
+      
+      # Optional: Certificate directory (default: /opt/eatunnel/certs)
+      # CERT_DIR: "/opt/eatunnel/certs"
+      
+      # Optional: Stunnel config path (default: /app/stunnel.conf)
+      # STUNNEL_CONF: "/app/stunnel.conf"
+    
+    # Optional: Persist certificates between container restarts
+    # volumes:
+    #   - ./certs:/opt/eatunnel/certs

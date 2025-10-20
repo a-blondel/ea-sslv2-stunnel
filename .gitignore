@@ -1,0 +1,13 @@
+# Ignore generated certificates
+certs/
+
+# Ignore logs
+*.log
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE files
+.vscode/
+.idea/
