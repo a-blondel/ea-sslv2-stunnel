@@ -10,6 +10,12 @@ services:
       # Expose SSL ports (listen ports = redirect_port + 1)
       - "30981:30981"
       - "30191:30191"
+      - "31571:31571"
+      - "31591:31591"
+      - "31281:31281"
+      - "31291:31291"
+      #- "30481:30481"
+      #- "30091:30091"
       # Add more ports as needed
     
     # Environment variables
@@ -20,7 +26,7 @@ services:
       # Multiple services are separated by semicolons
       # Listen port will be automatically calculated as redirect_port + 1
       # Same certificate will be used for all ports of a service
-      SSL_SERVICES: "pspnfs06:30980;pspnba06:30190"
+      SSL_SERVICES: "pspnfs06:30980;pspnba06:30190;pspkok06:31570,31590;pspuefa06:31280,31290" # ;pspfifa06:30480;pspmadden06:30090
       
       # REQUIRED: IP address to redirect traffic to
       REDIRECT_IP: "127.0.0.1"

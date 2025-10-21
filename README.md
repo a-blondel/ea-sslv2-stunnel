@@ -4,6 +4,17 @@
 
 This project provides a Docker container that automatically configures stunnel with SSLv2 support to redirect SSL traffic to backend servers. Certificates are automatically generated and patched at container startup.
 
+## Supported games
+
+Here are some of the EA games known to use SSLv2:
+
+- FIFA 06
+- FIFA World Cup 06
+- Fight Night Round 3
+- Madden NFL 06
+- NBA Live 06
+- Need for Speed: Most Wanted 5-1-0
+
 ## Features
 
 - Automatic SSL certificate generation exploiting the [Old ProtoSSL Bug](https://github.com/Aim4kill/Bug_OldProtoSSL)
