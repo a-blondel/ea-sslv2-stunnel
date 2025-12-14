@@ -13,7 +13,8 @@ Here are some of the EA games known to use SSLv2:
 - Fight Night Round 3
 - Madden NFL 06
 - NBA Live 06
-- Need for Speed: Most Wanted 5-1-0
+- Need for Speed: Most Wanted 5-1-0 (PSP)
+- Need for Speed: Most Wanted 2005 (PC, PS2)
 
 ## Features
 
