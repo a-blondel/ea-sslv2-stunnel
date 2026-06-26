@@ -8,17 +8,49 @@ services:
     network_mode: bridge
     ports:
       # Expose SSL ports (listen ports = redirect_port + 1)
+      - "10601:10601"
+      - "11001:11001"
+      - "11701:11701"
+      - "12401:12401"
+      #- "20101:20101"
+      #- "20301:20301"
+      #- "20401:20401"
+      - "20481:20481"
+      #- "20501:20501"
+      #- "20701:20701"
+      #- "20801:20801"
+      - "20901:20901"
+      - "20921:20921"
+      - "20971:20971"
+      - "21001:21001"
+      - "21301:21301"
+      - "21801:21801"
+      #- "30001:30001"
+      - "30101:30101"
+      - "30201:30201"
+      - "30301:30301"
+      #- "30501:30501"
+      #- "30601:30601"
+      - "30701:30701"
       - "30901:30901"
       - "30921:30921"
       - "30981:30981"
       - "30191:30191"
+      - "30401:30401"
+      - "30801:30801"
       - "31571:31571"
       - "31591:31591"
+      - "31201:31201"
       - "31281:31281"
       - "31291:31291"
+      - "31301:31301"
+      - "31401:31401"
+      - "31501:31501"
+      - "31701:31701"
+      - "31721:31721"
+      - "31801:31801"
       #- "30481:30481"
       #- "30091:30091"
-      # Add more ports as needed
     
     # Environment variables
     environment:
@@ -28,7 +60,47 @@ services:
       # Multiple services are separated by semicolons
       # Listen port will be automatically calculated as redirect_port + 1
       # Same certificate will be used for all ports of a service
-      SSL_SERVICES: "ps2nfs06:30900;pcnfs06:30920;pspnfs06:30980;pspnba06:30190;pspkok06:31570,31590;pspuefa06:31280,31290" # ;pspfifa06:30480;pspmadden06:30090
+      SSL_SERVICES: >-
+        ps2nfs05:20900;
+        pcnfs05:20920,20970;
+        ps2nfs06:30900;
+        pcnfs06:30920;
+        pspnfs06:30980;
+        pspnba06:30190;
+        pspkok06:31570,31590;
+        pspuefa06:31280,31290;
+        ps2nascar07:10600;
+        ps2fifa06:30400;
+        ps2ssx04:11000;
+        ps2marvel06:31700,31720;
+        ps2afl06:31400;
+        ps2afl07:12400;
+        ps2burnout05:21800;
+        ps2burnout06:31800;
+        ps2uefa06:31200;
+        ps2kok06:31500;
+        ps2mvp06:30800;
+        ps2nba06:30100;
+        ps2nbastreet05:21000;
+        ps2mm06:30700;
+        ps2uefa05:20480;
+        ps2tw06:30200;
+        ps2coach06:31300;
+        ps2nflstreet05:21300;
+        ps2nflstreet07:11700;
+        ps2nhl06:30300;
+      # Disabled services:
+      # ;ps2ncaa05:20500
+      # ;pspfifa06:30480
+      # ;pspmadden06:30090
+      # ;ps2fifa05east:20400
+      # ;ps2madden06:30000
+      # ;ps2mvp05:20800
+      # ;ps2nascar06:30600
+      # ;ps2nba05:20100
+      # ;ps2ncaa06:30500
+      # ;ps2mm05:20700
+      # ;ps2nhl05:20300
       
       # REQUIRED: IP address to redirect traffic to
       REDIRECT_IP: "127.0.0.1"
