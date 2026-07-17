@@ -1,12 +1,14 @@
-FROM alpine:3.16.5
+FROM alpine:3.24.1
 
 # Install required dependencies
-# Only install what's needed for OpenSSL and stunnel compilation
+# Only what's needed to compile OpenSSL 1.0.2 and stunnel.
 RUN apk --update --no-cache add \
     build-base \
     linux-headers \
-    curl \
     perl \
+    nasm \
+    wget \
+    ca-certificates \
     && rm -rf /var/cache/apk/*
 
 # Create application directory
@@ -23,7 +25,7 @@ RUN chmod -R +x scripts
 RUN scripts/provision.sh /opt/eatunnel
 
 # Clean up build dependencies to reduce image size
-RUN apk del build-base linux-headers perl && \
+RUN apk del build-base linux-headers perl nasm && \
     rm -rf /opt/eatunnel/openssl-* \
            /opt/eatunnel/stunnel-* \
            /opt/eatunnel/*.tar.gz \

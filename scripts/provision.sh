@@ -10,13 +10,18 @@ echo "Building OpenSSL with SSLv2 support"
 echo "================================================"
 
 # Download and extract OpenSSL
-wget -q https://www.openssl.org/source/openssl-1.0.2k.tar.gz
-tar -xf openssl-1.0.2k.tar.gz
-openssldir=openssl-1.0.2k
+# 1.0.2u is the last PUBLIC 1.0.2 release (Dec 2019); later 1.0.2z* versions are
+# only available under OpenSSL's paid premium support.
+wget -q https://github.com/openssl/openssl/releases/download/OpenSSL_1_0_2u/openssl-1.0.2u.tar.gz
+tar -xf openssl-1.0.2u.tar.gz
+openssldir=openssl-1.0.2u
 cd $openssldir
 
 echo "Configuring OpenSSL..."
-./config --prefix=/opt/openssl --openssldir=/opt/openssl enable-ssl2 enable-ssl3 enable-weak-ssl-ciphers no-shared
+# no-ec is required so a modern stunnel can initialize an SSLv2 context: without
+# it stunnel tries to apply an ECDH groups list that an SSLv2 context rejects
+# ("Invalid groups list in 'curves'" -> "Failed to initialize TLS context").
+./config --prefix=/opt/openssl --openssldir=/opt/openssl enable-ssl2 enable-ssl3 enable-weak-ssl-ciphers no-ec no-shared
 
 echo "Building OpenSSL (this may take a few minutes)..."
 make depend
@@ -44,12 +49,14 @@ echo "Building stunnel"
 echo "================================================"
 
 cd $app_home
-wget -q https://www.stunnel.org/archive/5.x/stunnel-5.58.tar.gz
-tar xzf stunnel-5.58.tar.gz
-cd stunnel-5.58/
+# Latest stunnel (self-reports as 5.78; source is the 5.79 archive). Works with
+# SSLv2 thanks to the no-ec OpenSSL build above.
+wget -q https://www.stunnel.org/archive/5.x/stunnel-5.79.tar.gz
+tar xzf stunnel-5.79.tar.gz
+cd stunnel-5.79/
 
 echo "Configuring stunnel..."
-./configure CPPFLAGS="-I/opt/openssl/include" LDFLAGS="-L/opt/openssl/lib"
+./configure --with-ssl=/opt/openssl CPPFLAGS="-I/opt/openssl/include" LDFLAGS="-L/opt/openssl/lib"
 
 echo "Building stunnel..."
 make -j$(nproc)
