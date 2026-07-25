@@ -37,6 +37,7 @@ services:
       - "30981:30981"
       - "30191:30191"
       - "30401:30401"
+      - "30481:30481" # psp fifa06 (us + eu patched from 30490)
       - "30801:30801"
       - "31571:31571"
       - "31591:31591"
@@ -49,6 +50,10 @@ services:
       - "31701:31701"
       - "31721:31721"
       - "31801:31801"
+      - "40001:40001" # ps2 madden06 (patched from 30001)
+      - "40091:40091" # psp madden06 (patched from 30091)
+      - "40501:40501" # ps2 ncaa06 (patched from 30501)
+      - "40601:40601" # ps2 nascar06 (patched from 30601)
       #- "30481:30481"
       #- "30091:30091"
     
@@ -89,16 +94,16 @@ services:
         ps2nflstreet05:21300;
         ps2nflstreet07:11700;
         ps2nhl06:30300;
+        pspfifa06:30480;
+        ps2madden06:40000;
+        pspmadden06:40090;
+        ps2nascar06:40600;
+        ps2ncaa06:40500;
       # Disabled services:
       # ;ps2ncaa05:20500
-      # ;pspfifa06:30480
-      # ;pspmadden06:30090
       # ;ps2fifa05east:20400
-      # ;ps2madden06:30000
       # ;ps2mvp05:20800
-      # ;ps2nascar06:30600
       # ;ps2nba05:20100
-      # ;ps2ncaa06:30500
       # ;ps2mm05:20700
       # ;ps2nhl05:20300
       
