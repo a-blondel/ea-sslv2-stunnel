@@ -21,6 +21,7 @@ services:
       #- "20801:20801"
       - "20901:20901"
       - "20921:20921"
+      - "20951:20951"
       - "20971:20971"
       - "21001:21001"
       - "21301:21301"
@@ -66,7 +67,7 @@ services:
       # Listen port will be automatically calculated as redirect_port + 1
       # Same certificate will be used for all ports of a service
       SSL_SERVICES: >-
-        ps2nfs05:20900;
+        ps2nfs05:20900,20950;
         pcnfs05:20920,20970;
         ps2nfs06:30900;
         pcnfs06:30920;
